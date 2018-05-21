@@ -1,11 +1,18 @@
 package com.luongung.spring.peepx.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -18,7 +25,7 @@ public class Category implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="id", nullable = false)
 	private long id;
 	
@@ -31,15 +38,20 @@ public class Category implements Serializable{
 	@Column(name="description")
 	private String description;
 	
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "category_budget", 
+	joinColumns = @JoinColumn(name = "category_id", referencedColumnName = "id"),
+	inverseJoinColumns = @JoinColumn(name = "budget_id", referencedColumnName = "id"))
+	private Set<Budget> budgets = new HashSet<>();
+	
 	public Category() {
 	}
-	
-	public Category(long id, String name, String icon, String description) {
-		super();
-		this.id = id;
+
+	public Category(String name, String icon, String description, Set<Budget> budgets) {
 		this.name = name;
 		this.icon = icon;
 		this.description = description;
+		this.budgets = budgets;
 	}
 
 	public long getId() {
@@ -74,6 +86,41 @@ public class Category implements Serializable{
 		this.description = description;
 	}
 
+	public Set<Budget> getBudgets() {
+		return budgets;
+	}
+
+	public void setBudgets(Set<Budget> budgets) {
+		this.budgets = budgets;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (id ^ (id >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Category other = (Category) obj;
+		if (id != other.id)
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Category [id=" + id + ", name=" + name + ", icon=" + icon + ", description=" + description
+				+ ", budgets=" + budgets + "]";
+	}
 	
 	
 }

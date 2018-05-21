@@ -3,6 +3,7 @@ package com.luongung.spring.peepx.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -37,6 +38,11 @@ public class CategoryController {
 		LOG.info("Delete category with Id = " + id);
 		categoryServices.deleteById(id);
 		LOG.info("Deleted");
+	}
+	
+	@GetMapping(path = "/list")
+	public Iterable<Category> listAll() {
+		return categoryServices.findAll();
 	}
 	
 
