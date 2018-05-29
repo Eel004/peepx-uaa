@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -26,7 +27,7 @@ public class Category implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="id", nullable = false)
+	@Column(name="category_id", nullable = false)
 	private long id;
 	
 	@Column(name="name")
@@ -38,20 +39,18 @@ public class Category implements Serializable{
 	@Column(name="description")
 	private String description;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "category_budget", 
-	joinColumns = @JoinColumn(name = "category_id", referencedColumnName = "id"),
-	inverseJoinColumns = @JoinColumn(name = "budget_id", referencedColumnName = "id"))
-	private Set<Budget> budgets = new HashSet<>();
+	@OneToMany(mappedBy = "category")
+	private Set<Transaction> transactions = new HashSet<>();
 	
 	public Category() {
 	}
 
-	public Category(String name, String icon, String description, Set<Budget> budgets) {
+	public Category(long id, String name, String icon, String description, Set<Transaction> transactions) {
+		this.id = id;
 		this.name = name;
 		this.icon = icon;
 		this.description = description;
-		this.budgets = budgets;
+		this.transactions = transactions;
 	}
 
 	public long getId() {
@@ -86,12 +85,12 @@ public class Category implements Serializable{
 		this.description = description;
 	}
 
-	public Set<Budget> getBudgets() {
-		return budgets;
+	public Set<Transaction> getTransactions() {
+		return transactions;
 	}
 
-	public void setBudgets(Set<Budget> budgets) {
-		this.budgets = budgets;
+	public void setTransactions(Set<Transaction> transactions) {
+		this.transactions = transactions;
 	}
 
 	@Override
@@ -119,8 +118,7 @@ public class Category implements Serializable{
 	@Override
 	public String toString() {
 		return "Category [id=" + id + ", name=" + name + ", icon=" + icon + ", description=" + description
-				+ ", budgets=" + budgets + "]";
+				+ ", transactions=" + transactions + "]";
 	}
-	
 	
 }

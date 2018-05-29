@@ -10,6 +10,11 @@ import com.luongung.spring.peepx.model.Category;
 import com.luongung.spring.peepx.repositories.CategoryRepository;
 import com.luongung.spring.peepx.services.CategoryServices;
 
+/**
+ * defining a bean of type {@link CategoryServices}
+ * @author luong.ung
+ *
+ */
 @Service
 public class CategoryServicesImpl implements CategoryServices {
 	

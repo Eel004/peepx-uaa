@@ -14,7 +14,7 @@ import com.luongung.spring.peepx.model.Category;
 import com.luongung.spring.peepx.services.CategoryServices;
 
 @RestController
-@RequestMapping(path="/api")
+@RequestMapping(path="/api/categories")
 public class CategoryController {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(CategoryController.class);
@@ -27,7 +27,7 @@ public class CategoryController {
 	    return "Hello World! Welcome to visit personal expenditure app";
 	}
 	
-	@PostMapping
+	@PostMapping(path = "/create")
 	public Category create(@RequestBody Category category) {
 		LOG.info("Create category...");
 		return categoryServices.save(category);

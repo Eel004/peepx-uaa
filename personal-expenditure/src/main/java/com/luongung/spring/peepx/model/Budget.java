@@ -1,15 +1,13 @@
 package com.luongung.spring.peepx.model;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -19,33 +17,34 @@ public class Budget implements Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
-	
+	private static final long serialVersionUID = -5931152888186930286L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id", nullable = false)
 	private long id;
 	
-	@Column(name = "amount")
+	@Column(name="amount", nullable = false)
 	private double amount;
 	
-	@Column(name = "on_month")
-	private int onMonth;
+	@Column(name="spent_amount")
+	private double spentAmount;
 	
-	@Column(name = "currency")
-	private String currency;
+	@Column(name = "from_date", nullable = false)
+	private Date fromDate;
 	
-	@ManyToMany(mappedBy = "budgets")
-	private Set<Category> categories = new HashSet<>();
-	
+	@Column(name = "to_date", nullable = false)
+	private Date toDate;
+
 	public Budget () {
 	}
 	
-	public Budget(double amount, int onMonth, String currency, Set<Category> categories) {
+	public Budget(long id, double amount, double spentAmount, Date fromDate, Date toDate) {
+		this.id = id;
 		this.amount = amount;
-		this.onMonth = onMonth;
-		this.currency = currency;
-		this.categories = categories;
+		this.spentAmount = spentAmount;
+		this.fromDate = fromDate;
+		this.toDate = toDate;
 	}
 
 	public long getId() {
@@ -64,47 +63,35 @@ public class Budget implements Serializable {
 		this.amount = amount;
 	}
 
-	public int getOnMonth() {
-		return onMonth;
+	public double getSpentAmount() {
+		return spentAmount;
 	}
 
-	public void setOnMonth(int onMonth) {
-		this.onMonth = onMonth;
+	public void setSpentAmount(double spentAmount) {
+		this.spentAmount = spentAmount;
 	}
 
-	public Set<Category> getCategories() {
-		return categories;
+	public Date getFromDate() {
+		return fromDate;
 	}
 
-	public void setCategories(Set<Category> categories) {
-		this.categories = categories;
+	public void setFromDate(Date fromDate) {
+		this.fromDate = fromDate;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + (int) (id ^ (id >>> 32));
-		return result;
+	public Date getToDate() {
+		return toDate;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Budget other = (Budget) obj;
-		if (id != other.id)
-			return false;
-		return true;
+	public void setToDate(Date toDate) {
+		this.toDate = toDate;
 	}
 
 	@Override
 	public String toString() {
-		return "Budget [id=" + id + ", amount=" + amount + ", onMonth=" + onMonth + ", currency=" + currency + ", categories=" + categories + "]";
+		return "Budget [id=" + id + ", amount=" + amount + ", spentAmount=" + spentAmount + ", fromDate=" + fromDate
+				+ ", toDate=" + toDate + "]";
 	}
+	
 
 }
