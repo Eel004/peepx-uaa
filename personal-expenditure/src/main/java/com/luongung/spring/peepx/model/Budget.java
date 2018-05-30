@@ -2,12 +2,16 @@ package com.luongung.spring.peepx.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -21,7 +25,7 @@ public class Budget implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id", nullable = false)
+	@Column(name = "budget_id", nullable = false)
 	private long id;
 	
 	@Column(name="amount", nullable = false)
@@ -35,16 +39,21 @@ public class Budget implements Serializable {
 	
 	@Column(name = "to_date", nullable = false)
 	private Date toDate;
+	
+	@OneToMany(mappedBy="budget",fetch = FetchType.LAZY)
+	private Set<Transaction> transactions = new HashSet<>();
 
 	public Budget () {
 	}
-	
-	public Budget(long id, double amount, double spentAmount, Date fromDate, Date toDate) {
+
+	public Budget(long id, double amount, double spentAmount, Date fromDate, Date toDate,
+			Set<Transaction> transactions) {
 		this.id = id;
 		this.amount = amount;
 		this.spentAmount = spentAmount;
 		this.fromDate = fromDate;
 		this.toDate = toDate;
+		this.transactions = transactions;
 	}
 
 	public long getId() {
@@ -87,10 +96,40 @@ public class Budget implements Serializable {
 		this.toDate = toDate;
 	}
 
+	public Set<Transaction> getTransactions() {
+		return transactions;
+	}
+
+	public void setTransactions(Set<Transaction> transactions) {
+		this.transactions = transactions;
+	}
+
 	@Override
 	public String toString() {
 		return "Budget [id=" + id + ", amount=" + amount + ", spentAmount=" + spentAmount + ", fromDate=" + fromDate
-				+ ", toDate=" + toDate + "]";
+				+ ", toDate=" + toDate + ", transactions=" + transactions + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (id ^ (id >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Budget other = (Budget) obj;
+		if (id != other.id)
+			return false;
+		return true;
 	}
 	
 

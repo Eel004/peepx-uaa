@@ -8,6 +8,7 @@ import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,7 +32,7 @@ public class Transaction implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id", nullable = false)
+	@Column(name = "transaction_id", nullable = false)
 	private long id;
 	
 	@Column(name = "amount", nullable = false)
@@ -45,20 +46,26 @@ public class Transaction implements Serializable{
 	@Column(name = "currency", nullable = true)
 	private String currency;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="category_id", nullable = false)
 	private Category category;
 	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="budget_id", nullable = false)
+	private Budget budget;
+	
 	public Transaction () {
 	}
-	
-	public Transaction(double amount, Date spendDate, String currency, Category category) {
+
+	public Transaction(long id, double amount, Date spendDate, String currency, Category category, Budget budget) {
+		this.id = id;
 		this.amount = amount;
 		this.spendDate = spendDate;
 		this.currency = currency;
 		this.category = category;
+		this.budget = budget;
 	}
-
+	
 	public long getId() {
 		return id;
 	}
@@ -91,12 +98,20 @@ public class Transaction implements Serializable{
 		this.currency = currency;
 	}
 
-	public Category getCategories() {
+	public Category getCategory() {
 		return category;
 	}
 
-	public void setCategories(Category category) {
+	public void setCategory(Category category) {
 		this.category = category;
+	}
+
+	public Budget getBudget() {
+		return budget;
+	}
+
+	public void setBudget(Budget budget) {
+		this.budget = budget;
 	}
 
 	@Override
@@ -124,7 +139,7 @@ public class Transaction implements Serializable{
 	@Override
 	public String toString() {
 		return "Transaction [id=" + id + ", amount=" + amount + ", spendDate=" + spendDate + ", currency=" + currency
-				+ ", categories=" + category + "]";
+				+ ", category=" + category + ", budget=" + budget + "]";
 	}
 
 }
