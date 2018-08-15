@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.luongung.spring.peepx.model.Category;
-import com.luongung.spring.peepx.services.CategoryServices;
+import com.luongung.spring.peepx.service.CategoryServices;
 
 @RestController
 @RequestMapping(path="/api/categories")

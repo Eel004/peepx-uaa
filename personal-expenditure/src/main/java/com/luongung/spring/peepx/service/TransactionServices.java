@@ -1,4 +1,4 @@
-package com.luongung.spring.peepx.services;
+package com.luongung.spring.peepx.service;
 
 import java.util.List;
 import java.util.Optional;

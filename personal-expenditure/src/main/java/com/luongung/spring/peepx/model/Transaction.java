@@ -2,8 +2,6 @@ package com.luongung.spring.peepx.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -13,16 +11,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import org.hibernate.annotations.ManyToAny;
-
 @Entity
-@Table(name = "transaction")
+@Table(name = "TBL_TRANSACTION")
 public class Transaction implements Serializable{
 	
 	/**
@@ -32,26 +27,26 @@ public class Transaction implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "transaction_id", nullable = false)
+	@Column(name = "TRANSACTION_ID", nullable = false)
 	private long id;
 	
-	@Column(name = "amount", nullable = false)
+	@Column(name = "AMOUNT", nullable = false)
 	private double amount;
 	
 	@Basic
-	@Column(name = "spend_date", nullable = false)
+	@Column(name = "SPEND_DATE", nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date spendDate;
 	
-	@Column(name = "currency", nullable = true)
+	@Column(name = "CURRENCY", nullable = true)
 	private String currency;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="category_id", nullable = false)
+	@JoinColumn(name="CATEGORY_ID", nullable = false)
 	private Category category;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="budget_id", nullable = false)
+	@JoinColumn(name="BUDGET_ID", nullable = false)
 	private Budget budget;
 	
 	public Transaction () {

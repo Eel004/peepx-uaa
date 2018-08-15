@@ -15,7 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "budget")
+@Table(name = "TBL_BUDGET")
 public class Budget implements Serializable {
 
 	/**
@@ -25,19 +25,19 @@ public class Budget implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "budget_id", nullable = false)
+	@Column(name = "BUDGET_ID", nullable = false)
 	private long id;
 	
-	@Column(name="amount", nullable = false)
+	@Column(name="AMOUNT", nullable = false)
 	private double amount;
 	
-	@Column(name="spent_amount")
+	@Column(name="SPENT_AMOUNT")
 	private double spentAmount;
 	
-	@Column(name = "from_date", nullable = false)
+	@Column(name = "FROM_DATE", nullable = false)
 	private Date fromDate;
 	
-	@Column(name = "to_date", nullable = false)
+	@Column(name = "TO_DATE", nullable = false)
 	private Date toDate;
 	
 	@OneToMany(mappedBy="budget",fetch = FetchType.LAZY)

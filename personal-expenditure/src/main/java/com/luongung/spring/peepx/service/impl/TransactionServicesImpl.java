@@ -1,4 +1,4 @@
-package com.luongung.spring.peepx.serviceimpl;
+package com.luongung.spring.peepx.service.impl;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,9 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.luongung.spring.peepx.dao.TransactionDao;
 import com.luongung.spring.peepx.model.Transaction;
-import com.luongung.spring.peepx.repositories.TransactionRepository;
-import com.luongung.spring.peepx.services.TransactionServices;
+import com.luongung.spring.peepx.service.TransactionServices;
 
 /**
  * defining a bean of type {@link TransactionServices}
@@ -19,26 +19,31 @@ import com.luongung.spring.peepx.services.TransactionServices;
 public class TransactionServicesImpl implements TransactionServices{
 
 	@Autowired
-	private TransactionRepository transactionRepository;
-	
+	private TransactionDao transactionRepository;
+
 	@Override
 	public Iterable<Transaction> findAll() {
-		return transactionRepository.findAll();
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public Optional<Transaction> findById(long id) {
-		return transactionRepository.findById(id);
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public Transaction save(Transaction transaction) {
-		return transactionRepository.save(transaction);
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public void deleteById(long id) {
-		transactionRepository.deleteById(id);
+		// TODO Auto-generated method stub
+		
 	}
-
+	
+	
 }

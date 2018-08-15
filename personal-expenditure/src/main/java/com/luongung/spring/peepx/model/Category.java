@@ -4,37 +4,33 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="tbl_category")
-public class Category implements Serializable{
+@Table(name="TBL_CATEGORY")
+public class Category implements Serializable {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
-	
+	private static final long serialVersionUID = -6509357102751397550L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="category_id", nullable = false)
+	@Column(name="CATEGORY_ID", nullable = false)
 	private long id;
 	
-	@Column(name="name")
+	@Column(name="NAME")
 	private String name;
 	
-	@Column(name="icon")
+	@Column(name="ICON")
 	private String icon;
 	
 	@Column(name="description")

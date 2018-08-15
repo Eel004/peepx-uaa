@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.luongung.spring.peepx.model.Transaction;
-import com.luongung.spring.peepx.services.TransactionServices;
+import com.luongung.spring.peepx.service.TransactionServices;
 
 /*
  * Controller using for transaction model

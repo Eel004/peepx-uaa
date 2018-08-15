@@ -1,4 +1,4 @@
-package com.luongung.spring.peepx.serviceimpl;
+package com.luongung.spring.peepx.service.impl;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,9 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.luongung.spring.peepx.dao.CategoryDao;
 import com.luongung.spring.peepx.model.Category;
-import com.luongung.spring.peepx.repositories.CategoryRepository;
-import com.luongung.spring.peepx.services.CategoryServices;
+import com.luongung.spring.peepx.service.CategoryServices;
 
 /**
  * defining a bean of type {@link CategoryServices}
@@ -19,31 +19,37 @@ import com.luongung.spring.peepx.services.CategoryServices;
 public class CategoryServicesImpl implements CategoryServices {
 	
 	@Autowired
-	private CategoryRepository categoryRepository;
+	private CategoryDao categoryRepository;
 
 	@Override
 	public Iterable<Category> findAll() {
-		return categoryRepository.findAll();
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public List<Category> search(String q) {
-		return categoryRepository.findByNameContaining(q);
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public Optional<Category> findById(long id) {
-		return categoryRepository.findById(id);
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public Category save(Category category) {
-		return categoryRepository.save(category);
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public void deleteById(long id) {
-		categoryRepository.deleteById(id);
+		// TODO Auto-generated method stub
+		
 	}
 
+	
 }
