@@ -1,0 +1,37 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.luong.peepxuaa",
+      "nativeLanguage": "en"
+    },
+    "jhipsterVersion": "5.7.0",
+    "applicationType": "uaa",
+    "baseName": "peepxuaa",
+    "packageName": "com.luong.peepxuaa",
+    "packageFolder": "com/luong/peepxuaa",
+    "serverPort": "9999",
+    "authenticationType": "uaa",
+    "cacheProvider": "hazelcast",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "mysql",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "YjFkYjNlY2E3ZDYxMjkzZDNlYTI4MTVjYWNkYTIwZWVjM2NjYTA5M2NmMmVkNzg5MTdhYWY1OWQ1NzQyMTBhM2I3MzY2YmY2Nzg0NjA2MWNkZmZjNTEzODBhZGQwMTc5ZjJmODhiY2M3ZDIyNjE4YmUxMjFiOGU4YmYxZDYyYTM=",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "otherModules": [],
+    "enableTranslation": true,
+    "clientPackageManager": "npm",
+    "nativeLanguage": "en",
+    "languages": [
+      "en"
+    ],
+    "skipClient": true
+  }
+}
